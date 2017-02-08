@@ -1,0 +1,14 @@
+src
+messages
+properties
+.idea
+.settings
+web
+util
+target
+
+etc/**
+!etc/tomcat
+
+build/**
+!build/dist

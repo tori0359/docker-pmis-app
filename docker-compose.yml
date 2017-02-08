@@ -1,0 +1,53 @@
+version: "2"
+
+services:
+  was:
+    #build: .
+    image: ${REGISTRY_URL}/${PROJECT_NAME}
+    volumes:
+      - tmp:/tmp
+      - thumb:/thumb
+      - ${LOG_PATH}/tomcat:/usr/local/tomcat/logs
+      - ${LOG_PATH}/pmis:/var/log/pmis
+      - ${EDMS_PATH}:/edms
+      - app:/usr/local/tomcat/webapps
+
+  httpd:
+    image: ${REGISTRY_URL}/apache-pmis
+    ports:
+      - "80:80"
+      - "443:443"
+    links:
+      - was
+      - upload
+    volumes:
+      - ${LOG_PATH}/httpd:/var/log/apache2
+      - app:/var/www
+      - ${APACHE_SSL_CERT_PATH}:/etc/ssl/app
+    environment:
+      - APACHE_SSL
+      - APACHE_SSL_KEY
+      - APACHE_SSL_CERT
+      - APACHE_SSL_CHAIN
+
+  upload:
+    image: ${REGISTRY_URL}/pmis-fileupload
+    #ports:
+      #- "18180:8180"
+    volumes:
+      - tmp:/tmp
+      - ngx:/etc/nginx/www
+      - ${LOG_PATH}/nginx:/var/log/nginx
+    links:
+      - php
+
+  php:
+    image: php:5.6-fpm
+    volumes:
+      - ngx:/etc/nginx/www
+
+volumes:
+  tmp:
+  thumb:
+  ngx:
+  app:

@@ -1,0 +1,15 @@
+# Use this for testing the application
+# no ssl available
+# Access it through the port set with HTTP_PORT
+version: "2"
+
+services:
+  was:
+    build: .
+    image: ${PROJECT_NAME}
+    ports:
+      - "8080:8080"
+    volumes:
+      - ${EDMS_PATH}:/edms
+      - ${LOG_PATH}/tomcat:/usr/local/tomcat/logs
+      - ${LOG_PATH}/pmis:/var/log/pmis
