@@ -6,9 +6,15 @@
 
 ## Production Environment
 
-Create a folder for the application.
+> Here we assume PMIS has been built and an image has been pushed into our registry already.
+> The following configuration will pull the image `<SANGAH_REGISTRY>/<PROJECT_NAME>`
+> if this image is not present you will see only errors.
 
-Inside put the following files, located inside the folder `docker`:
+Clone this repository into the server where you will deploy the application:
+
+    $ git clone https://github.com/sangahco/docker-pmis-app.git
+
+Locate the following files inside the folder created:
 
 - `docker-compose.yml`
 - `.env` *(default values)*
@@ -31,7 +37,7 @@ Important variable to set are:
 - `APACHE_SSL`
 - `APACHE_SSL_CERT_PATH`
 
-Run the application with the following command:
+Run the application with the following command and see the magic:
 
 	$ docker-compose up -d
 
