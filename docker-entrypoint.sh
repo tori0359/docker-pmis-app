@@ -2,10 +2,9 @@
 
 set -e
 
-if [ -d "/usr/local/src" ]; then
-    rm -rf /usr/local/tomcat/webapps/ROOT
-    mv -f /usr/local/src/stnd_pmis.war /usr/local/tomcat/webapps/
-    rm -r /usr/local/src
+if [ -f "/usr/local/src/pmis.war" ]; then
+    rm -rf /usr/local/pmis/ROOT
+    mv -f /usr/local/src/pmis.war /usr/local/pmis/pmis.war
 fi
 
 exec catalina.sh run

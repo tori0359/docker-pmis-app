@@ -1,14 +1,7 @@
 FROM dev.sangah.com:5043/tomcat-base
 
 COPY server.xml /usr/local/tomcat/conf/
-RUN rm -rf /usr/local/tomcat/webapps/*
-COPY stnd_pmis.war /usr/local/src/
-
-VOLUME "/usr/local/tomcat/webapps"
-#VOLUME "/edms"
-#VOLUME "/usr/local/tomcat/logs"
-#VOLUME "/var/log"
-#VOLUME "/tmp"
+COPY stnd_pmis.war /usr/local/src/pmis.war
 
 EXPOSE 8080
 EXPOSE 8081

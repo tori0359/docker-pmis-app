@@ -2,7 +2,6 @@ version: "2"
 
 services:
   was:
-    #build: .
     image: ${REGISTRY_URL}/${PROJECT_NAME}
     volumes:
       - tmp:/tmp
@@ -10,7 +9,7 @@ services:
       - ${LOG_PATH}/tomcat:/usr/local/tomcat/logs
       - ${LOG_PATH}/pmis:/var/log/pmis
       - ${EDMS_PATH}:/edms
-      - app:/usr/local/tomcat/webapps
+      - app:/usr/local/pmis
 
   httpd:
     image: ${REGISTRY_URL}/apache-pmis

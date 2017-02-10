@@ -1,8 +1,27 @@
 # How to Use Docker Deployment
 
-> Before anything else make sure you change the variable `PROJECT_NAME` with the actual project name.
+## Brief Explanation
+
+There are three configuration files to use with `docker-compose`:
+
+- **docker-compose.yml**
+    > This is used for production, it has **4 services**, `WAS`, `SSL`, `File Upload Server` and `Web Server`.
+
+- **docker-compose-dev-full.yml**
+    > This is used for testing with **3 services**, `WAS`, `File Upload Server` and `Web Server`.
+
+- **docker-compose-dev.yml**
+    > This is used for testing, only **1 service** running `WAS`.
+
+
+> **Important**
+>
+> Inside the file `.env` change the variable `PROJECT_NAME` with the actual project name.
 > This variable is used as the Docker image name and have to be different from any other project.
 
+> Check also the variable `PROJECT_ARCHIVE` and make sure the `war` file generated during the building process (`Ant Build`) has the same name.
+
+---
 
 ## Production Environment
 
@@ -22,13 +41,13 @@ Locate the following files inside the folder created:
 Before starting the application change the settings inside the file `.env`
 or set these variables at the end of the file `.bashrc`, located inside the user home folder:
 
-	export EDMS_PATH=/edms
-	export LOG_PATH=/var/log/pmis
-	export APACHE_SSL=1
-	export APACHE_SSL_CERT=cert.pem
-	export APACHE_SSL_KEY=key.pem
-	export APACHE_SSL_CHAIN=chain.pem
-	export APACHE_SSL_CERT_PATH=/etc/ssl/app
+    export EDMS_PATH=/edms
+    export LOG_PATH=/var/log/pmis
+    export APACHE_SSL=1
+    export APACHE_SSL_CERT=cert.pem
+    export APACHE_SSL_KEY=key.pem
+    export APACHE_SSL_CHAIN=chain.pem
+    export APACHE_SSL_CERT_PATH=/etc/ssl/app
 
 Important variable to set are:
 
@@ -39,33 +58,46 @@ Important variable to set are:
 
 Run the application with the following command and see the magic:
 
-	$ docker-compose up -d
+    $ docker-compose up -d
 
 Stop the application with the following command:
 
-	$ docker-compose down
-	
+    $ docker-compose down
+
 Observe the application's log with:
 
-	$ docker-compose logs -f --tail 100
+    $ docker-compose logs -f --tail 100
+
+The application will be available at port `80` or `443`.
 
 
 ## Development Environment
 
-Before building the image you need to execute the And Task `docker-build`.
+> **NOTICE**
+>
+> The `war` file and `server.xml` file will be used directly to run the container, you can't start this container remotely,
+> first copy all the required files into the server than proceed with the following instructions.
+> If you are on windows you can use `WinSCP`, on Linux you can use `docker-machine` to copy all the `build/dist` folder with:
+>
+>       $ docker-machine scp -r . sa-aws1:~/pmis
+>
+> where `sa-aws1` is the name of the machine
+
+Create the `war` file executing the Ant Task `docker-build`, the file will be saved inside the `build/dist` folder.
 
 Only after the completion of the previous task, 
 from the `build/dist` folder you should execute the following commands.
 
 Build and Run the application with:
 
-	$ docker-compose -f docker-compose-dev.yml build --pull
-	$ docker-compose -f docker-compose-dev.yml up -d
+    $ docker-compose -f docker-compose-dev.yml up -d
 
 Stop the application with:
 
-	$ docker-compose -f docker-compose-dev.yml down
-	
+    $ docker-compose -f docker-compose-dev.yml down
+
 Observe the application's log with:
 
-	$ docker-compose -f docker-compose-dev.yml logs -f --tail 100
+    $ docker-compose -f docker-compose-dev.yml logs -f --tail 100
+
+The application will be available at port `8080` or at the port defined with `HTTP_PORT`.
