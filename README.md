@@ -2,7 +2,7 @@
 
 ## Brief Explanation
 
-There are three configuration files to use with `docker-compose`:
+There are three configurations available:
 
 - **docker-compose.yml**
     > This is used for production, it has **4 services**, `WAS`, `SSL`, `File Upload Server` and `Web Server`.
@@ -17,9 +17,9 @@ There are three configuration files to use with `docker-compose`:
 > **Important**
 >
 > Inside the file `.env` change the variable `PROJECT_NAME` with the actual project name.
-> This variable is used as the Docker image name and have to be different from any other project.
+> This variable is used as the Docker image name and have to be different from any other projects.
 
-> Check also the variable `PROJECT_ARCHIVE` and make sure the `war` file generated during the building process (`Ant Build`) has the same name.
+> Check also the variable `PROJECT_ARCHIVE` and make sure the `war` file generated during the building process (`Ant Build`) matches the name.
 
 ---
 
@@ -73,17 +73,7 @@ The application will be available at port `80` or `443`.
 
 ## Development Environment
 
-> **NOTICE**
->
-> The `war` file and `server.xml` file will be used directly to run the container, you can't start this container remotely,
-> first copy all the required files into the server than proceed with the following instructions.
-> If you are on windows you can use `WinSCP`, on Linux you can use `docker-machine` to copy all the `build/dist` folder with:
->
->       $ docker-machine scp -r . sa-aws1:~/pmis
->
-> where `sa-aws1` is the name of the machine
-
-Create the `war` file executing the Ant Task `docker-build`, the file will be saved inside the `build/dist` folder.
+Create the `war` file executing the Ant Task `docker-build`, the file will be saved inside the `build/dist/was` folder.
 
 Only after the completion of the previous task, 
 from the `build/dist` folder you should execute the following commands.

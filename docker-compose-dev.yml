@@ -5,7 +5,7 @@ version: "2"
 
 services:
   was:
-    build: .
+    build: was
     ports:
       - "${HTTP_PORT}:8080"
     volumes:

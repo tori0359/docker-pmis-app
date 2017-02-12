@@ -5,7 +5,7 @@ version: "2"
 
 services:
   was:
-    build: .
+    build: was
     volumes:
       - tmp:/tmp
       - app:/usr/local/pmis
