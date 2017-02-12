@@ -3,59 +3,39 @@ version: "2"
 services:
   was:
     image: ${REGISTRY_URL}/${PROJECT_NAME}
-    volumes:
-      - tmp:/tmp
-      - thumb:/thumb
-      - ${LOG_PATH}/tomcat:/usr/local/tomcat/logs
-      - ${LOG_PATH}/pmis:/var/log/pmis
-      - ${EDMS_PATH}:/edms
-      - app:/usr/local/pmis
+    extends: 
+      file: common-services.yml
+      service: webapp
     environment: 
       - JVM_ROUTE=worker1
 
   was2:
-    image: ${REGISTRY_URL}/${PROJECT_NAME}
-    volumes:
-      - tmp:/tmp
-      - thumb:/thumb
-      - ${LOG_PATH}/tomcat:/usr/local/tomcat/logs
-      - ${LOG_PATH}/pmis:/var/log/pmis
-      - ${EDMS_PATH}:/edms
-      - app:/usr/local/pmis
+    extends: 
+      service: was
     environment: 
       - JVM_ROUTE=worker2
 
   httpd:
-    image: ${REGISTRY_URL}/apache-pmis
+    extends: 
+      file: common-services.yml
+      service: httpd
     ports:
       - "80:80"
       - "443:443"
     volumes:
-      - ${LOG_PATH}/httpd:/var/log/apache2
-      - app:/var/www
-      - ${APACHE_SSL_CERT_PATH}:/etc/ssl/app
       - ./httpd/workers.properties:/etc/libapache2-mod-jk/workers.properties
-    environment:
-      - APACHE_SSL
-      - APACHE_SSL_KEY
-      - APACHE_SSL_CERT
-      - APACHE_SSL_CHAIN
 
   upload:
-    image: ${REGISTRY_URL}/pmis-fileupload
-    #ports:
-      #- "18180:8180"
-    volumes:
-      - tmp:/tmp
-      - ngx:/etc/nginx/www
-      - ${LOG_PATH}/nginx:/var/log/nginx
+    extends: 
+      file: common-services.yml
+      service: upload
     links:
       - php
 
   php:
-    image: php:5.6-fpm
-    volumes:
-      - ngx:/etc/nginx/www
+    extends: 
+      file: common-services.yml
+      service: php
 
 volumes:
   tmp:
