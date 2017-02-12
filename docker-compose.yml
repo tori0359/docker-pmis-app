@@ -10,19 +10,31 @@ services:
       - ${LOG_PATH}/pmis:/var/log/pmis
       - ${EDMS_PATH}:/edms
       - app:/usr/local/pmis
+    environment: 
+      - JVM_ROUTE=worker1
+
+  was2:
+    image: ${REGISTRY_URL}/${PROJECT_NAME}
+    volumes:
+      - tmp:/tmp
+      - thumb:/thumb
+      - ${LOG_PATH}/tomcat:/usr/local/tomcat/logs
+      - ${LOG_PATH}/pmis:/var/log/pmis
+      - ${EDMS_PATH}:/edms
+      - app:/usr/local/pmis
+    environment: 
+      - JVM_ROUTE=worker2
 
   httpd:
     image: ${REGISTRY_URL}/apache-pmis
     ports:
       - "80:80"
       - "443:443"
-    links:
-      - was
-      - upload
     volumes:
       - ${LOG_PATH}/httpd:/var/log/apache2
       - app:/var/www
       - ${APACHE_SSL_CERT_PATH}:/etc/ssl/app
+      - ./httpd/workers.properties:/etc/libapache2-mod-jk/workers.properties
     environment:
       - APACHE_SSL
       - APACHE_SSL_KEY
