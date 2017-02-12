@@ -3,31 +3,31 @@ version: "2"
 services:
   webapp:
     volumes: 
-        - tmp:/tmp
-        - thumb:/thumb
-        - app:/usr/local/pmis
-        - ${LOG_PATH}/tomcat:/usr/local/tomcat/logs
-        - ${LOG_PATH}/pmis:/var/log/pmis
-        - ${EDMS_PATH}:/edms
+    - tmp:/tmp
+    - thumb:/thumb
+    - app:/usr/local/pmis
+    - ${LOG_PATH}/tomcat:/usr/local/tomcat/logs
+    - ${LOG_PATH}/pmis:/var/log/pmis
+    - ${EDMS_PATH}:/edms
 
   httpd:
     image: ${REGISTRY_URL}/apache-pmis
     volumes:
-        - app:/var/www
+    - app:/var/www
     environment:
-        - APACHE_SSL
-        - APACHE_SSL_KEY
-        - APACHE_SSL_CERT
-        - APACHE_SSL_CHAIN
+    - APACHE_SSL
+    - APACHE_SSL_KEY
+    - APACHE_SSL_CERT
+    - APACHE_SSL_CHAIN
 
   upload:
     image: ${REGISTRY_URL}/pmis-fileupload
     volumes:
-        - tmp:/tmp
-        - ngx:/etc/nginx/www
-        - ${LOG_PATH}/nginx:/var/log/nginx
+    - tmp:/tmp
+    - ngx:/etc/nginx/www
+    - ${LOG_PATH}/nginx:/var/log/nginx
 
   php:
     image: php:5.6-fpm
     volumes:
-      - ngx:/etc/nginx/www
+    - ngx:/etc/nginx/www
