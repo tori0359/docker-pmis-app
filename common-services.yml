@@ -1,0 +1,29 @@
+version: "2"
+
+services:
+  webapp:
+    image: ${REGISTRY_URL}/${PROJECT_NAME}
+    volumes: 
+        - tmp:/tmp
+        - thumb:/thumb
+        - ${LOG_PATH}/tomcat:/usr/local/tomcat/logs
+        - ${LOG_PATH}/pmis:/var/log/pmis
+        - ${EDMS_PATH}:/edms
+        - app:/usr/local/pmis
+
+  httpd:
+    image: ${REGISTRY_URL}/apache-pmis
+    volumes:
+        - app:/var/www
+    environment:
+        - APACHE_SSL
+        - APACHE_SSL_KEY
+        - APACHE_SSL_CERT
+        - APACHE_SSL_CHAIN
+
+  upload:
+    image: ${REGISTRY_URL}/pmis-fileupload
+    volumes:
+        - tmp:/tmp
+        - ngx:/etc/nginx/www
+        - ${LOG_PATH}/nginx:/var/log/nginx
