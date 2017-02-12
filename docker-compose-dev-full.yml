@@ -5,15 +5,13 @@ version: "2"
 
 services:
   was:
-    image: ${REGISTRY_URL}/tomcat-base
+    build: .
     volumes:
       - tmp:/tmp
       - app:/usr/local/pmis
       - ${EDMS_PATH}:/edms
       - ${LOG_PATH}/tomcat:/usr/local/tomcat/logs
       - ${LOG_PATH}/pmis:/var/log/pmis
-      - ./${PROJECT_ARCHIVE}:/usr/local/pmis/pmis.war
-      - ./server.xml:/usr/local/tomcat/conf/server.xml
 
   httpd:
     image: ${REGISTRY_URL}/apache-pmis

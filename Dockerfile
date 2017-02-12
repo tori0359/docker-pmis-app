@@ -1,7 +1,7 @@
 FROM dev.sangah.com:5043/tomcat-base
 
 COPY server.xml /usr/local/tomcat/conf/
-COPY stnd_pmis.war /usr/local/src/pmis.war
+COPY stnd_pmis.war /usr/local/src/
 
 EXPOSE 8080
 EXPOSE 8081
