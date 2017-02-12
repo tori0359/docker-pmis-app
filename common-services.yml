@@ -2,14 +2,13 @@ version: "2"
 
 services:
   webapp:
-    image: ${REGISTRY_URL}/${PROJECT_NAME}
     volumes: 
         - tmp:/tmp
         - thumb:/thumb
+        - app:/usr/local/pmis
         - ${LOG_PATH}/tomcat:/usr/local/tomcat/logs
         - ${LOG_PATH}/pmis:/var/log/pmis
         - ${EDMS_PATH}:/edms
-        - app:/usr/local/pmis
 
   httpd:
     image: ${REGISTRY_URL}/apache-pmis
@@ -27,3 +26,8 @@ services:
         - tmp:/tmp
         - ngx:/etc/nginx/www
         - ${LOG_PATH}/nginx:/var/log/nginx
+
+  php:
+    image: php:5.6-fpm
+    volumes:
+      - ngx:/etc/nginx/www

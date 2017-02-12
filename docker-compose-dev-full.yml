@@ -6,42 +6,33 @@ version: "2"
 services:
   was:
     build: was
-    volumes:
-      - tmp:/tmp
-      - app:/usr/local/pmis
-      - ${EDMS_PATH}:/edms
-      - ${LOG_PATH}/tomcat:/usr/local/tomcat/logs
-      - ${LOG_PATH}/pmis:/var/log/pmis
+    extends: 
+      file: common-services.yml
+      service: webapp
 
   httpd:
-    image: ${REGISTRY_URL}/apache-pmis
-    links:
-      - was
-      - upload
+    extends: 
+      file: common-services.yml
+      service: httpd
     ports:
       - "${HTTP_PORT}:80"
-    volumes:
-      - app:/var/www
     environment:
       - APACHE_SSL=0
 
   upload:
-    image: ${REGISTRY_URL}/pmis-fileupload
-    #ports:
-      #- "18180:8180"
-    volumes:
-      - tmp:/tmp
-      - ngx:/etc/nginx/www
+    extends: 
+      file: common-services.yml
+      service: upload
     links:
       - php
 
   php:
-    image: php:5.6-fpm
-    volumes:
-      - ngx:/etc/nginx/www
+    extends: 
+      file: common-services.yml
+      service: php
 
 volumes:
-  edms:
+  thumb:
   tmp:
   ngx:
   app:

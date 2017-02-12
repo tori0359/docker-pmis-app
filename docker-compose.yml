@@ -2,6 +2,7 @@ version: "2"
 
 services:
   was:
+    image: ${REGISTRY_URL}/${PROJECT_NAME}
     extends: 
       file: common-services.yml
       service: webapp
@@ -10,16 +11,21 @@ services:
     extends: 
       file: common-services.yml
       service: httpd
+    ports:
+      - "80:80"
+      - "443:443"
 
   upload:
     extends: 
       file: common-services.yml
       service: upload
+    links:
+      - php
 
   php:
-    image: php:5.6-fpm
-    volumes:
-      - ngx:/etc/nginx/www
+    extends: 
+      file: common-services.yml
+      service: php
 
 volumes:
   tmp:
