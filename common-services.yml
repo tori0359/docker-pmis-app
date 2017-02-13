@@ -16,6 +16,7 @@ services:
     image: ${REGISTRY_URL}/apache-pmis
     volumes:
     - app:/var/www
+    - ${APACHE_SSL_CERT_PATH}:/etc/ssl/app
     environment:
     - APACHE_SSL
     - APACHE_SSL_KEY
