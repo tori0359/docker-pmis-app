@@ -11,8 +11,6 @@ services:
     extends: 
       file: common-services.yml
       service: httpd
-    volumes: 
-      - ${APACHE_SSL_CERT_PATH}:/etc/ssl/app
     ports:
       - "80:80"
       - "443:443"
