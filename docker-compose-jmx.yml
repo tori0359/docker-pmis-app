@@ -1,0 +1,9 @@
+version: "2"
+
+services:
+  was:
+    ports:
+    - ${JMX_PORT}:${JMX_PORT}
+    environment: 
+    - JMX_PORT
+    - JMX_HOST
