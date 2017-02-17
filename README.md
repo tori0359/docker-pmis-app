@@ -2,16 +2,26 @@
 
 ## Brief Explanation
 
-There are three configurations available:
+There are Four configurations available:
 
 - **docker-compose.yml**
-    > This is used for production, it has **4 services**, `WAS`, `SSL`, `File Upload Server` and `Web Server`.
+    > This is used for production, it has **3 services**, 
+    > `WAS`, `File Upload Server` and `Web Server` with `SSL` support.
 
 - **docker-compose-dev-full.yml**
-    > This is used for testing with **3 services**, `WAS`, `File Upload Server` and `Web Server`.
+    > This is used for testing with **3 services**,
+    > `WAS`, `File Upload Server` and `Web Server`.
 
 - **docker-compose-dev.yml**
-    > This is used for testing, only **1 service** running `WAS`.
+    > This configuration contains only one `WAS` instance.
+
+- **docker-compose-jmx.yml**
+    > This configuration enable the Java Management Extensions 
+    > for monitoring Tomcat instance
+
+- **docker-compose-certgen**
+    > This configuration run the certbot tool to create or update the ssl certificate
+    > It require the web server running, to use only for production.
 
 
 > **Important**
@@ -91,3 +101,21 @@ Observe the application's log with:
     $ docker-compose -f docker-compose-dev.yml logs -f --tail 100
 
 The application will be available at port `8080` or at the port defined with `HTTP_PORT`.
+
+
+## Create SSL Certificate with Certbot (Letsencrypt)
+
+You find a more complete documentation here https://github.com/sangahco/nginx-certbot, please read carefully.
+
+This container run and die as soon the creation or update operation end.
+
+It can be run using the following command:
+
+    $ docker-compose -f docker-compose.yml -f docker-compose-certgen.yml up
+
+
+The best way to use this certgen image is to use the script `update-certs.sh` and schedule the run every week using `crontab`.
+Set the required variables inside the script (remove the comment to those variables and change their values)
+and add a line to crontab like this (changing the path to the right location of the script):
+
+    00 02 * * 1 /bin/sh ~/update-certs.sh
