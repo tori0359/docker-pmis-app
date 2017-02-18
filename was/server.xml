@@ -34,7 +34,7 @@
 
         <Engine defaultHost="localhost" jvmRoute="worker1" name="Catalina">
             <Realm className="org.apache.catalina.realm.UserDatabaseRealm" resourceName="UserDatabase"/>
-            <Host appBase="/usr/local/pmis" autoDeploy="false" deployOnStartup="false" name="localhost"
+            <Host appBase="/usr/local/webapp" autoDeploy="false" deployOnStartup="false" name="localhost"
                 unpackWARs="true" xmlNamespaceAware="false" xmlValidation="false">
                 <Context docBase="pmis.war" path="" reloadable="false" allowLinking="true"/>
             </Host>
