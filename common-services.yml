@@ -11,6 +11,7 @@ services:
     - ${EDMS_PATH}:/edms
     environment:
     - JAVA_MAX_SIZE
+    - MACHINE_HOST
     - DB_URL
     - DB_PASSWORD
     - DB_USERNAME

@@ -1,0 +1,45 @@
+version: "2"
+
+services:
+  was:
+    image: ${REGISTRY_URL}/${PROJECT_NAME}
+    extends: 
+      file: common-services.yml
+      service: webapp
+    environment: 
+    - SYSTEM_UPLOAD_HANDLER=nginx
+
+  httpd:
+    extends: 
+      file: common-services.yml
+      service: httpd
+    volumes:
+      - /etc/letsencrypt:/etc/letsencrypt
+      - ${APACHE_SSL_CERT_PATH}:/etc/ssl/app
+    networks: 
+      default:
+      hub_net:
+        aliases: 
+        - pmis1
+
+  upload:
+    extends: 
+      file: common-services.yml
+      service: upload
+    links:
+      - php
+
+  php:
+    extends: 
+      file: common-services.yml
+      service: php
+
+volumes:
+  tmp:
+  thumb:
+  ngx:
+  app:
+
+networks: 
+  hub_net:
+    external: true
