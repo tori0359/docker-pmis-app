@@ -66,20 +66,24 @@ Important variable to set are:
 - `APACHE_SSL`
 - `APACHE_SSL_CERT_PATH`
 
-Run the application with the following command and see the magic:
+### Run the application with the following commands and see the magic:
 
+    $ docker-compose pull
     $ docker-compose up -d
 
-Stop the application with the following command:
+`docker-compose pull` will download the latest images of the services before running them.
+
+### Stop the application with the following command:
 
     $ docker-compose down
 
-Observe the application's log with:
+### Observe the application's log with:
 
     $ docker-compose logs -f --tail 100
 
 The application will be available at port `80` or `443`.
 
+---
 
 ## Development Environment
 
@@ -90,6 +94,7 @@ from the `build/dist` folder you should execute the following commands.
 
 Build and Run the application with:
 
+    $ docker-compose -f docker-compose-dev.yml build --pull
     $ docker-compose -f docker-compose-dev.yml up -d
 
 Stop the application with:
@@ -101,6 +106,8 @@ Observe the application's log with:
     $ docker-compose -f docker-compose-dev.yml logs -f --tail 100
 
 The application will be available at port `8080` or at the port defined with `HTTP_PORT`.
+
+You can replace `docker-compose-dev.yml` with `docker-compose-dev-full.yml` to test all services.
 
 
 ## Create SSL Certificate with Certbot (Letsencrypt)
