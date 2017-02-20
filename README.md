@@ -162,4 +162,4 @@ The following settings are available:
 | JMX_PORT             | Monitoring Service Port                                                                                                                         |
 | JMX_HOST             | Monitoring Service Host (should be same as `MACHINE_HOST`)                                                                                      |
 
-(*) *These variables are required*
+(\*) *These variables are required*
