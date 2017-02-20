@@ -1,11 +1,8 @@
-# Use this for testing the application
-# no ssl available
-# Access it through the port set with HTTP_PORT
 version: "2"
 
 services:
   was:
-    build: was
+    image: ${REGISTRY_URL}/${PROJECT_NAME}
     extends: 
       file: common-services.yml
       service: webapp
@@ -16,10 +13,14 @@ services:
     extends: 
       file: common-services.yml
       service: httpd
-    ports:
-      - "${HTTP_PORT}:80"
-    environment:
-      - APACHE_SSL=0
+    volumes:
+      - /etc/letsencrypt:/etc/letsencrypt
+      - ${APACHE_SSL_CERT_PATH}:/etc/ssl/app
+    networks: 
+      default:
+      hub_net:
+        aliases: 
+        - pmis1
 
   upload:
     extends: 
@@ -34,7 +35,11 @@ services:
       service: php
 
 volumes:
-  thumb:
   tmp:
+  thumb:
   ngx:
   app:
+
+networks: 
+  hub_net:
+    external: true
