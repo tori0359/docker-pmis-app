@@ -2,7 +2,8 @@ version: "2"
 
 services:
   was:
-    image: ${REGISTRY_URL}/${PROJECT_NAME}
+    build: was
+    #image: ${REGISTRY_URL}/${PROJECT_NAME}
     extends: 
       file: common-services.yml
       service: webapp
@@ -21,25 +22,12 @@ services:
       default:
       hub_net:
         aliases: 
-        - pmis1
-    restart: "unless-stopped"
-
-  upload:
-    extends: 
-      file: common-services.yml
-      service: upload
-    restart: "unless-stopped"
-
-  php:
-    extends: 
-      file: common-services.yml
-      service: php
+        - ${HUB_INSTANCE}
     restart: "unless-stopped"
 
 volumes:
   tmp:
   thumb:
-  ngx:
   app:
 
 networks: 
