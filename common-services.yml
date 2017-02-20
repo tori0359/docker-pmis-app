@@ -10,12 +10,12 @@ services:
     - ${LOG_PATH}/pmis:/var/log/pmis
     - ${EDMS_PATH}:/edms
     environment:
+    - LOGSPOUT=ignore
     - JAVA_MAX_SIZE
     - MACHINE_HOST
     - DB_URL
     - DB_PASSWORD
     - DB_USERNAME
-    - LOGSPOUT=ignore
 
   httpd:
     image: ${REGISTRY_URL}/apache-pmis
