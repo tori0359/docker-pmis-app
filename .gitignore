@@ -1,3 +1,5 @@
 .copyignore
 *.properties
 log
+certs
+ssl
