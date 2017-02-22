@@ -75,6 +75,7 @@ echo "Arguments: $CONF_ARG"
 echo "Command: $@"
 
 if [ "$1" == "up" ]; then
+    docker-compose $CONF_ARG pull
     docker-compose $CONF_ARG build --pull
     docker-compose $CONF_ARG up -d
     exit 0
