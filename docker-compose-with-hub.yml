@@ -2,7 +2,8 @@ version: "2"
 
 services:
   was:
-    image: ${REGISTRY_URL}/${PROJECT_NAME}
+    build: was
+    #image: ${REGISTRY_URL}/${PROJECT_NAME}
     extends: 
       file: common-services.yml
       service: webapp
@@ -16,6 +17,7 @@ services:
     environment: 
     - JVM_ROUTE=worker2
     - SYSTEM_UPLOAD_HANDLER=nginx
+    restart: "unless-stopped"
 
   httpd:
     extends: 
@@ -28,24 +30,12 @@ services:
       default:
       hub_net:
         aliases: 
-        - pmis1
-
-  upload:
-    extends: 
-      file: common-services.yml
-      service: upload
-    links:
-      - php
-
-  php:
-    extends: 
-      file: common-services.yml
-      service: php
+        - ${HUB_INSTANCE}
+    restart: "unless-stopped"
 
 volumes:
   tmp:
   thumb:
-  ngx:
   app:
 
 networks: 

@@ -3,3 +3,5 @@ log4j.properties
 system_config_ko.properties
 *.properties
 log
+certs
+ssl

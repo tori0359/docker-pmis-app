@@ -11,3 +11,5 @@ services:
     - CERTBOT_EMAIL
     - CERTBOT_STANDALONE=false
     - CERTBOT_CERTS_PATH
+    depends_on: 
+    - httpd

@@ -16,6 +16,7 @@ services:
     environment: 
     - JVM_ROUTE=worker2
     - SYSTEM_UPLOAD_HANDLER=nginx
+    restart: "unless-stopped"
 
   httpd:
     build: httpd
@@ -29,18 +30,19 @@ services:
     ports:
       - "80:80"
       - "443:443"
+    restart: "unless-stopped"
 
   upload:
     extends: 
       file: common-services.yml
       service: upload
-    links:
-      - php
+    restart: "unless-stopped"
 
   php:
     extends: 
       file: common-services.yml
       service: php
+    restart: "unless-stopped"
 
 volumes:
   tmp:

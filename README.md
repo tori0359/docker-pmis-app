@@ -142,24 +142,25 @@ and add a line to crontab like this (changing the path to the right location of 
 
 The following settings are available:
 
-| Property/Variable    | Description                                                                                                                                     |
-|----------------------|-------------------------------------------------------------------------------------------------------------------------------------------------|
-| PROJECT_NAME(*)      | Project name used for the Docker image and as value for system.project.name property                                                            |
-| JAVA_MAX_SIZE(*)     | Java Max Heap Size (It should be at least 2G)                                                                                                   |
-| MACHINE_HOST(*)      | The full DNS and Port used to reach the tomcat instance  (ex. `203.239.21.121:8080` or `dev.sangah.com:8080`  or if using 80, `dev.sangah.com`) |
-| DB_URL(*)            | The full DB url (ex. `jdbc:oracle:thin:@203.239.21.121:1521:AL32UTF8`)                                                                          |
-| DB_USERNAME(*)       | The username to access the DB                                                                                                                   |
-| DB_PASSWORD(*)       | The password to access the DB                                                                                                                   |
-| HTTP_PORT            | This is the port that you can use to access the service (**development mode only**)                                                             |
-| APACHE_SSL           | It enable the SSL access                                                                                                                        |
-| APACHE_SSL_CERT      | The path to the SSL certificate                                                                                                                 |
-| APACHE_SSL_KEY       | The path to the SSL key                                                                                                                         |
-| APACHE_SSL_CHAIN     | The path to the SSL chain certificate                                                                                                           |
-| APACHE_SSL_CERT_PATH | This is where the SSL certificate and key are located.                                                                                          |
-| CERTBOT_CERTS_PATH   | This is where the SSL certificate have to be generated                                                                                          |
-| CERTBOT_HOST         | This is the host (DNS) used for generating the SSL certificates                                                                                 |
-| CERTBOT_EMAIL        | Email required by the certbot service                                                                                                           |
-| JMX_PORT             | Monitoring Service Port                                                                                                                         |
-| JMX_HOST             | Monitoring Service Host (should be same as `MACHINE_HOST`)                                                                                      |
+| Property/Variable    | Description                                                                                                                                                                            |
+|----------------------|----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
+| PROJECT_NAME(*)      | Project name used for the Docker image and as value for system.project.name property                                                                                                   |
+| JAVA_MAX_SIZE(*)     | Java Max Heap Size (It should be at least 2G)                                                                                                                                          |
+| MACHINE_HOST(*)      | The full DNS and Port used to reach the tomcat instance  (ex. `203.239.21.121:8080` or `dev.sangah.com:8080`  or if using 80, `dev.sangah.com`)                                        |
+| DB_URL(*)            | The full DB url (ex. `jdbc:oracle:thin:@203.239.21.121:1521:AL32UTF8`)                                                                                                                 |
+| DB_USERNAME(*)       | The username to access the DB                                                                                                                                                          |
+| DB_PASSWORD(*)       | The password to access the DB                                                                                                                                                          |
+| HTTP_PORT            | This is the port that you can use to access the service (**development mode only**)                                                                                                    |
+| APACHE_SSL           | It enable the SSL access                                                                                                                                                               |
+| APACHE_SSL_CERT      | The path to the SSL certificate                                                                                                                                                        |
+| APACHE_SSL_KEY       | The path to the SSL key                                                                                                                                                                |
+| APACHE_SSL_CHAIN     | The path to the SSL chain certificate                                                                                                                                                  |
+| APACHE_SSL_CERT_PATH | This is where the SSL certificate and key are located.                                                                                                                                 |
+| CERTBOT_CERTS_PATH   | This is where the SSL certificate have to be generated                                                                                                                                 |
+| CERTBOT_HOST         | This is the host (DNS) used for generating the SSL certificates                                                                                                                        |
+| CERTBOT_EMAIL        | Email required by the certbot service                                                                                                                                                  |
+| JMX_PORT             | The is the port required to connect to the JMX service.                                                                                                                                |
+| JMX_HOST             | This is the host that will be used to connect to the JMX service (should be same as `MACHINE_HOST`)                                                                                    |
+| HUB_INSTANCE         | This is the alias that will be used by the hub service to connect to this web server instance. This property is valid only if the `docker-compose-with-hub.yml` configuration is used. |
 
 (\*) *These variables are required*
