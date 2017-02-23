@@ -7,6 +7,14 @@ services:
       file: common-services.yml
       service: webapp
     environment: 
+    - JVM_ROUTE=worker1
+    - SYSTEM_UPLOAD_HANDLER=nginx
+
+  was2:
+    extends: 
+      service: was
+    environment: 
+    - JVM_ROUTE=worker2
     - SYSTEM_UPLOAD_HANDLER=nginx
 
   httpd:
