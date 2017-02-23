@@ -2,8 +2,7 @@ version: "2"
 
 services:
   was:
-    build: was
-    #image: ${REGISTRY_URL}/${PROJECT_NAME}
+    image: ${REGISTRY_URL}/${PROJECT_NAME}
     extends: 
       file: common-services.yml
       service: webapp
