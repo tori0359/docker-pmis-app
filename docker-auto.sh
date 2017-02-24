@@ -18,10 +18,11 @@ usage() {
 echo "Usage:  $(basename "$0") [MODE] [OPTIONS] [COMMAND]"
 echo 
 echo "Mode:"
-echo "  --prod          Mode: production"
-echo "  --dev           Mode: development"
-echo "  --fulldev       Mode: full development mode with all services running"
-echo "  --with-hub      Mode: production with service controlled by the hub"
+echo "  --prod          Production mode with all services running"
+echo "  --prod-was      Production mode with only was (tomcat) running"
+echo "  --dev           Development mode with only was running"
+echo "  --fulldev       Development mode with all services running"
+echo "  --with-hub      Production mode only was and httpd - have to run under the hub web server"
 echo
 echo "Options:"
 echo "  --jmx           Add JMX support"
@@ -50,23 +51,27 @@ for i in "$@"
 do
 case $i in
     --prod)
-        CONF_ARG="$CONF_ARG -f docker-compose.yml"
+        CONF_ARG="-f docker-compose-prod-full.yml"
+        shift
+        ;;
+    --prod-was)
+        CONF_ARG="-f docker-compose-prod-was.yml"
+        shift
+        ;;
+    --with-hub)
+        CONF_ARG="-f docker-compose-prod-with-hub.yml"
         shift
         ;;
     --dev)
-        CONF_ARG="$CONF_ARG -f docker-compose-dev.yml"
+        CONF_ARG="-f docker-compose-dev.yml"
         shift
         ;;
     --fulldev)
-        CONF_ARG="$CONF_ARG -f docker-compose-dev-full.yml"
+        CONF_ARG="-f docker-compose-dev-full.yml"
         shift
         ;;
     --jmx)
         CONF_ARG="$CONF_ARG -f docker-compose-jmx.yml"
-        shift
-        ;;
-    --with-hub)
-        CONF_ARG="$CONF_ARG -f docker-compose-with-hub.yml"
         shift
         ;;
     --certgen)
@@ -106,7 +111,7 @@ elif [ "$1" == "logs" ]; then
 elif [ "$1" == "build" ]; then
     if [ -z "$REGISTRY_URL" ]; then echo "REGISTRY_URL not defined."; exit 1; fi
     if [ -z "$PROJECT_NAME" ]; then echo "PROJECT_NAME not defined."; exit 1; fi
-
+    
     docker build -t $REGISTRY_URL/$PROJECT_NAME was
     exit 0
 

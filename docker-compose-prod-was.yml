@@ -1,0 +1,18 @@
+version: "2"
+
+services:
+  was:
+    image: ${REGISTRY_URL}/${PROJECT_NAME}
+    extends: 
+      file: common-services.yml
+      service: webapp
+    environment: 
+    - SYSTEM_UPLOAD_HANDLER=nginx
+    ports:
+    - "${HTTP_PORT}:8080"
+    restart: "unless-stopped"
+
+volumes:
+  tmp:
+  thumb:
+  app:
