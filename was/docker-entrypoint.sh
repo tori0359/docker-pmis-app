@@ -14,8 +14,9 @@ if [ -f "/usr/local/src/stnd_pmis.war" ]; then
     mkdir -p $WEBAPP_BASE && mv -f /usr/local/src/stnd_pmis.war $WEBAPP_BASE/pmis.war
 fi
 
-JVM_ROUTE=${JVM_ROUTE:-worker1}
-sed -i 's/worker1/$JVM_ROUTE/' /usr/local/tomcat/conf/server.xml
+export JVM_ROUTE=${JVM_ROUTE:-worker1}
+#sed -i "s/worker1/$JVM_ROUTE/" /usr/local/tomcat/conf/server.xml
+envsubst '$JVM_ROUTE' < /usr/local/tomcat/conf/server.xml > /usr/local/tomcat/conf/server.xml
 
 if [ $# -eq 0 ]; then
     # if no arguments are supplied start apache

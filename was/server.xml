@@ -32,7 +32,7 @@
 
         <Connector enableLookups="false" port="8081" protocol="AJP/1.3" redirectPort="443" URIEncoding="UTF-8"/>
 
-        <Engine defaultHost="localhost" jvmRoute="worker1" name="Catalina">
+        <Engine defaultHost="localhost" jvmRoute="$JVM_ROUTE" name="Catalina">
             <Realm className="org.apache.catalina.realm.UserDatabaseRealm" resourceName="UserDatabase"/>
             <Host appBase="/usr/local/webapp" autoDeploy="false" deployOnStartup="false" name="localhost"
                 unpackWARs="true" xmlNamespaceAware="false" xmlValidation="false">
