@@ -9,6 +9,7 @@ services:
     environment: 
     - JVM_ROUTE=worker1
     - SYSTEM_UPLOAD_HANDLER=nginx
+    restart: "unless-stopped"
 
   was2:
     extends: 
