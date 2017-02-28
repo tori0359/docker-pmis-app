@@ -26,9 +26,9 @@ services:
       file: common-services.yml
       service: httpd
     ports:
-      - "${HTTP_PORT}:80"
+    - "${HTTP_PORT}:80"
     environment:
-      - APACHE_SSL=0
+    - APACHE_SSL=0
 
   upload:
     extends: 
