@@ -20,7 +20,6 @@ services:
 
   httpd:
     build: httpd
-    image: apache-pmis:cluster
     extends: 
       file: common-services.yml
       service: httpd
