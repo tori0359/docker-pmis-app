@@ -14,9 +14,8 @@ services:
     extends: 
       file: common-services.yml
       service: httpd
-    volumes:
-      - /etc/letsencrypt:/etc/letsencrypt
-      - ${APACHE_SSL_CERT_PATH}:/etc/ssl/app
+    environment:
+    - APACHE_SSL=0
     networks: 
       default:
       hub_net:
