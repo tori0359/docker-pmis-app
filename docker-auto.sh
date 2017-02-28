@@ -40,7 +40,7 @@ echo "  build           Build the image"
 echo "  publish         Publish the image to the registry"
 }
 
-CONF_ARG=""
+CONF_ARG="-f docker-compose-prod-full.yml"
 
 if [ $# -eq 0 ]; then
     usage
@@ -93,7 +93,7 @@ echo "Command: $@"
 if [ "$1" == "up" ]; then
     docker-compose $CONF_ARG pull
     docker-compose $CONF_ARG build --pull
-    docker-compose $CONF_ARG up -d
+    docker-compose $CONF_ARG up -d --remove-orphans
     exit 0
 
 elif [ "$1" == "stop-all" ] && [ "$(docker ps --format {{.ID}})" != ""]; then
