@@ -96,12 +96,14 @@ if [ "$1" == "up" ]; then
     docker-compose $CONF_ARG up -d --remove-orphans
     exit 0
 
-elif [ "$1" == "stop-all" ] && [ "$(docker ps --format {{.ID}})" != ""]; then
-    docker stop $(docker ps --format {{.ID}})
+elif [ "$1" == "stop-all" ]; then
+    if [ -n "$(docker ps --format {{.ID}})" ]
+    then docker stop $(docker ps --format {{.ID}}); fi
     exit 0
 
-elif [ "$1" == "remove-all" ] && [ "$(docker ps -a --format {{.ID}})" != "" ]; then
-    docker rm $(docker ps -a --format {{.ID}})
+elif [ "$1" == "remove-all" ]; then
+    if [ -n "$(docker ps -a --format {{.ID}})" ]
+    then docker rm $(docker ps -a --format {{.ID}}); fi
     exit 0
 
 elif [ "$1" == "logs" ]; then
