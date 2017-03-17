@@ -6,8 +6,6 @@ services:
     extends: 
       file: common-services.yml
       service: webapp
-    environment: 
-    - SYSTEM_UPLOAD_HANDLER=nginx
     ports:
     - "${HTTP_PORT}:8080"
     restart: "unless-stopped"
