@@ -128,7 +128,8 @@ This container run and die as soon the creation or update operation end.
 After settings the required variables/properties (`CERTBOT_*`), 
 it can be run using the following command:
 
-    $ docker-compose -f docker-compose.yml -f docker-compose-certgen.yml up
+    $ ./docker-auto.sh --prod --certgen up
+    $ ./docker-auto.sh --prod --certgen logs
 
 
 The best way to use this certgen image is to use the script `update-certs.sh` and schedule the run every week using `crontab`.

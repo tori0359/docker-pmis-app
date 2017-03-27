@@ -8,4 +8,4 @@ SCRIPT_BASE_PATH=$( cd "$( dirname "${BASH_SOURCE[0]}" )" && pwd )
 
 cd "$SCRIPT_BASE_PATH"
 
-docker-compose -f docker-compose.yml -f docker-compose-certgen.yml up -d
+docker-compose -f docker-compose-prod-full.yml -f docker-compose-certgen.yml up -d
