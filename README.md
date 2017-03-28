@@ -2,34 +2,44 @@
 
 ## Brief Explanation
 
-There are Four configurations available:
+There are several configurations available that enable more or less services
+depending on the requirements.
 
-- **docker-compose.yml**
+- **docker-compose-prod-full.yml**
     > This is used for production, it has **3 services**, 
     > `WAS`, `File Upload Server` and `Web Server` with `SSL` support.
 
+- **docker-compose-prod-was.yml**
+    > This is used in case you want to run only `WAS` in a production environment (*highly discoraged!*).
+
+- **docker-compose-prod-with-hub.yml**
+    > Production environment to use together with the [*Web Hub*](https://github.com/sangahco/docker-webapp-hub) service.
+    > It has **2 services**, `WAS` and `Web Server`.
+
 - **docker-compose-dev-full.yml**
-    > This is used for testing with **3 services**,
+    > Testing environment where the image have to be built.
+    > It has **3 services**,
     > `WAS`, `File Upload Server` and `Web Server`.
 
 - **docker-compose-dev.yml**
-    > This configuration contains only one `WAS` instance.
+    > Testing environment where the image have to be built.
+    > This configuration contains only `WAS` instance.
 
 - **docker-compose-jmx.yml**
-    > This configuration enable the Java Management Extensions 
-    > for monitoring Tomcat instance
+    > This configuration enable the Java Management Extensions (*JMX*)
+    > for remote monitoring of Tomcat instances.
 
 - **docker-compose-certgen**
     > This configuration run the certbot tool to create or update the ssl certificate
     > It require the web server running, to use only for production.
 
 
-> **Important**
->
-> Inside the file `.env` change the variable `PROJECT_NAME` with the actual project name.
+**Important**
+
+> Inside the file `.env` the variable `PROJECT_NAME` have to be changed with the actual project Docker image name. You can find the name on [Jenkins Builder](http://dev.builder.sangah.com) or visiting our [SangAh Registry](https://dev.sangah.com:5044)
 > This variable is used as the Docker image name and have to be different from any other projects.
 
-> Check also the variable `PROJECT_ARCHIVE` and make sure the `war` file generated during the building process (`Ant Build`) matches the name.
+> In case you build manually, check also the variable `PROJECT_ARCHIVE` and make sure the `war` file generated during the building process (`Ant Build`) has the same name.
 
 ---
 
