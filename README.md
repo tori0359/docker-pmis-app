@@ -56,7 +56,7 @@ depending on the requirements.
 
 ---
 
-## Preparation Production
+## Prepare for Production
 
 > Here we assume PMIS has been built and an image has been pushed into our registry already 
 > (the building process is explained on another documentation).
@@ -90,7 +90,7 @@ Some of these properties are required, without them the application can not run,
 
 ---
 
-## Preparation Testing
+## Prepare for Testing
 
 Create the `war` file executing the Ant Task `docker-build`, the file will be saved inside the `build/dist/was` folder.
 
@@ -102,9 +102,9 @@ Remember to use the `dev` mode when running `docker-auto.sh` script!
 The application will be available at port `8080` or at the port defined with `HTTP_PORT`.
 
 
-## Run the services
+## Run using **docker-auto** script
 
-**Use the script `docker-auto.sh` to manage these services!**
+**Using the script `docker-auto.sh` is recommended!**
 
 ### Show the usage message of this script with:
     $ ./docker-auto.sh --help
@@ -124,6 +124,32 @@ The application will be available at port `8080` or at the port defined with `HT
 The application will be available at port `80` or `443`.
 
 Change the `mode` whether you want production or testing environment (`--prod`, `--prod-was`, `--dev`, `--full-dev` etc.).
+
+
+## Run with **docker-compose**
+
+If you need to build before running execute the following commands:
+
+    $ docker-compose -f docker-compose-dev-full.yml pull
+    $ docker-compose -f docker-compose-dev-full.yml build --pull
+
+Start the services with:
+
+    $ docker-compose -f docker-compose.prod-full.yml up -d
+
+Stop the service with:
+
+    $ docker-compose -f docker-compose.prod-full.yml down
+
+Show the status:
+
+    $ docker-compose -f docker-compose.prod-full.yml ps
+
+Follow the logs:
+
+    $ docker-compose -f docker-compose.prod-full.yml logs -f --tail 100
+
+*Change the configuration file (\*.yml) depending on what you need*
 
 ---
 
