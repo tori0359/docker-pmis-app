@@ -34,9 +34,10 @@ services:
     restart: "unless-stopped"
 
 volumes:
-  tmp:
   thumb:
   app:
+  tmp:
+    external: true
 
 networks: 
   hub_net:
