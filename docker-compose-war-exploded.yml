@@ -1,0 +1,6 @@
+version: "2"
+
+services:
+  was:
+    volumes: 
+    - ./web:/usr/local/webapp/ROOT
