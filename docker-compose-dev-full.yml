@@ -18,7 +18,6 @@ services:
       service: was
     environment: 
     - JVM_ROUTE=worker2
-    - SYSTEM_UPLOAD_HANDLER=nginx
 
   httpd:
     build: httpd
