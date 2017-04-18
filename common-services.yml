@@ -12,6 +12,7 @@ services:
     environment:
     - LOGSPOUT=ignore
     - JAVA_MAX_SIZE
+    - JAVA_OPTS
     - MACHINE_HOST
     - DB_URL
     - DB_PASSWORD
