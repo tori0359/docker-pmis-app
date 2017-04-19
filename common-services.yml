@@ -2,6 +2,8 @@ version: "2"
 
 services:
   webapp:
+    extends:
+      service: logging
     volumes: 
     - tmp:/tmp
     - thumb:/thumb
@@ -20,6 +22,8 @@ services:
 
   httpd:
     image: ${REGISTRY_URL}/apache-pmis
+    extends:
+      service: logging
     volumes:
     - app:/var/www
     environment:
@@ -30,6 +34,8 @@ services:
 
   upload:
     image: ${REGISTRY_URL}/pmis-fileupload
+    extends:
+      service: logging
     volumes:
     - tmp:/tmp
     - ngx:/etc/nginx/www
@@ -37,5 +43,14 @@ services:
 
   php:
     image: php:5.6-fpm
+    extends:
+      service: logging
     volumes:
     - ngx:/etc/nginx/www
+
+  logging:
+    logging: 
+      driver: "json-file"
+      options:
+        max-size: "10m"
+        max-file: "5"
