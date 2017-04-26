@@ -1,0 +1,6 @@
+version: "2"
+
+services:
+  was:
+    volumes: 
+    - ${WEBAPP_PATH}:/usr/local/webapp/ROOT
