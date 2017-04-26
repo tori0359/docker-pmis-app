@@ -1,0 +1,36 @@
+# Use this for testing the application
+# no ssl available
+# Access it through the port set with HTTP_PORT
+version: "2"
+
+services:
+  was:
+    build: was
+    extends: 
+      file: common-services.yml
+      service: webapp
+    environment: 
+    - SYSTEM_UPLOAD_HANDLER=nginx
+
+  httpd:
+    extends: 
+      file: common-services.yml
+      service: httpd
+    environment:
+    - APACHE_SSL=0
+    networks: 
+      default:
+      hub_net:
+        aliases: 
+        - ${HUB_INSTANCE}
+    restart: "unless-stopped"
+
+volumes:
+  thumb:
+  app:
+  tmp:
+    external: true
+
+networks: 
+  hub_net:
+    external: true
