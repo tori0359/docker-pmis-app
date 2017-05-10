@@ -76,13 +76,13 @@ Before starting the application we need to set the environment and you can choos
 - Change the settings using the file `.env`, they will be used for this application `only`.
 - Use user environment, set these variables at the end of the file `.bashrc`, located inside the user home folder:
 
-    export EDMS_PATH=/edms
-    export LOG_PATH=/var/log/pmis
-    export APACHE_SSL=1
-    export APACHE_SSL_CERT=cert.pem
-    export APACHE_SSL_KEY=key.pem
-    export APACHE_SSL_CHAIN=chain.pem
-    export APACHE_SSL_CERT_PATH=/etc/ssl/app
+        export EDMS_PATH=/edms
+        export LOG_PATH=/var/log/pmis
+        export APACHE_SSL=1
+        export APACHE_SSL_CERT=cert.pem
+        export APACHE_SSL_KEY=key.pem
+        export APACHE_SSL_CHAIN=chain.pem
+        export APACHE_SSL_CERT_PATH=/etc/ssl/app
 
   This configuration will be global and used amongst all applications on this server.
 
