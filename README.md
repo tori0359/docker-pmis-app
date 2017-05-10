@@ -163,7 +163,7 @@ You should take a moment to understand how Letsencrypt (Certbot) works and the f
 
 You find a more complete documentation here https://github.com/sangahco/nginx-certbot, please read carefully.
 
-This container run and die as soon the creation or update operation end.
+This container run and die as soon as the creation or update operation end.
 
 After settings the required variables/properties (`CERTBOT_*`), 
 it can be run using the following command:
