@@ -109,7 +109,7 @@ The application will be available at port `8080` or at the port defined with `HT
 ### Show the usage message of this script with:
     $ ./docker-auto.sh --help
 
-### Run the services changing with:
+### Run the services with the following command:
 
     $ ./docker-auto.sh --prod up
 
