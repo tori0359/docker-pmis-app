@@ -172,11 +172,9 @@ it can be run using the following command:
     $ ./docker-auto.sh --prod --certgen logs
 
 
-The best way to use this certgen image is to use the script `update-certs.sh` and schedule the run every week using `crontab`.
-Set the required variables inside the script (remove the comment to those variables and change their values)
-and add a line to crontab like this (changing the path to the right location of the script):
+The best way to use this certgen service is to set a schedule task that run every week using `crontab`:
 
-    00 02 * * 1 /bin/sh ~/update-certs.sh
+    00 02 * * 1 <PATH TO THE PROJECT FOLDER>/docker-auto.sh --certgen up
 
 
 ## Settings Up the Environment
