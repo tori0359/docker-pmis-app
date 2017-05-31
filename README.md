@@ -76,13 +76,13 @@ Before starting the application we need to set the environment and you can choos
 - Change the settings using the file `.env`, they will be used for this application `only`.
 - Use user environment, set these variables at the end of the file `.bashrc`, located inside the user home folder:
 
-    export EDMS_PATH=/edms
-    export LOG_PATH=/var/log/pmis
-    export APACHE_SSL=1
-    export APACHE_SSL_CERT=cert.pem
-    export APACHE_SSL_KEY=key.pem
-    export APACHE_SSL_CHAIN=chain.pem
-    export APACHE_SSL_CERT_PATH=/etc/ssl/app
+        export EDMS_PATH=/edms
+        export LOG_PATH=/var/log/pmis
+        export APACHE_SSL=1
+        export APACHE_SSL_CERT=cert.pem
+        export APACHE_SSL_KEY=key.pem
+        export APACHE_SSL_CHAIN=chain.pem
+        export APACHE_SSL_CERT_PATH=/etc/ssl/app
 
   This configuration will be global and used amongst all applications on this server.
 
@@ -109,7 +109,7 @@ The application will be available at port `8080` or at the port defined with `HT
 ### Show the usage message of this script with:
     $ ./docker-auto.sh --help
 
-### Run the services changing with:
+### Run the services with the following command:
 
     $ ./docker-auto.sh --prod up
 
@@ -163,7 +163,7 @@ You should take a moment to understand how Letsencrypt (Certbot) works and the f
 
 You find a more complete documentation here https://github.com/sangahco/nginx-certbot, please read carefully.
 
-This container run and die as soon the creation or update operation end.
+This container run and die as soon as the creation or update operation end.
 
 After settings the required variables/properties (`CERTBOT_*`), 
 it can be run using the following command:
@@ -172,11 +172,9 @@ it can be run using the following command:
     $ ./docker-auto.sh --prod --certgen logs
 
 
-The best way to use this certgen image is to use the script `update-certs.sh` and schedule the run every week using `crontab`.
-Set the required variables inside the script (remove the comment to those variables and change their values)
-and add a line to crontab like this (changing the path to the right location of the script):
+The best way to use this certgen service is to set a schedule task that run every week using `crontab`:
 
-    00 02 * * 1 /bin/sh ~/update-certs.sh
+    00 02 * * 1 <PATH TO THE PROJECT FOLDER>/docker-auto.sh --certgen up
 
 
 ## Settings Up the Environment
