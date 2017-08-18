@@ -2,26 +2,39 @@
 
 set -e
 
-DOCKER_COMPOSE_VERSION="1.11.2"
+###############################################
+# Extract Environment Variables from .env file
+# Ex. REGISTRY_URL="$(getenv REGISTRY_URL)"
+###############################################
+getenv(){
+    local _env="$(printenv $1)"
+    echo "${_env:-$(cat .env | awk 'BEGIN { FS="="; } /^'$1'/ {sub(/\r/,"",$2); print $2;}')}"
+}
+
+DOCKER_COMPOSE_VERSION="1.15.0"
 CONF_ARG="-f docker-compose-prod-full.yml"
 SCRIPT_BASE_PATH=$( cd "$( dirname "${BASH_SOURCE[0]}" )" && pwd )
 PATH=$PATH:/usr/local/bin/
+PROJECT_NAME="$(getenv PROJECT_NAME)"
+REGISTRY_URL="$(getenv REGISTRY_URL)"
 
 cd "$SCRIPT_BASE_PATH"
 
-PROJECT_NAME="$PROJECT_NAME"
-if [ -z "$PROJECT_NAME" ]; then
-    PROJECT_NAME="$(cat .env | awk 'BEGIN { FS="="; } /^PROJECT_NAME/ {sub(/\r/,"",$2); print $2;}')"
-fi
-REGISTRY_URL="$REGISTRY_URL"
-if [ -z "$REGISTRY_URL" ]; then
-    REGISTRY_URL="$(cat .env | awk 'BEGIN { FS="="; } /^REGISTRY_URL/ {sub(/\r/,"",$2); print $2;}')"
-fi
-
-if ! command -v docker-compose >/dev/null 2>&1; then
+########################################
+# Install docker-compose
+# DOCKER_COMPOSE_VERSION need to be set
+########################################
+install_docker_compose() {
     sudo curl -L "https://github.com/docker/compose/releases/download/$DOCKER_COMPOSE_VERSION/docker-compose-$(uname -s)-$(uname -m)" \
     -o /usr/local/bin/docker-compose
     sudo chmod +x /usr/local/bin/docker-compose
+    return 0
+}
+
+if ! command -v docker-compose >/dev/null 2>&1; then
+    install_docker_compose
+elif [[ "$(docker-compose version --short)" != "$DOCKER_COMPOSE_VERSION" ]]; then
+    install_docker_compose
 fi
 
 usage() {
