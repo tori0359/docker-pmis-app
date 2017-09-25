@@ -43,9 +43,10 @@ echo
 echo "Mode:"
 echo "  --prod          Production mode with all services running"
 echo "  --prod-was      Production mode with only was (tomcat) running"
-echo "  --dev           Development mode with only was running"
-echo "  --fulldev       Development mode with all services running"
-echo "  --with-hub      Production mode only was and httpd - have to run under the hub web server"
+echo "  --dev           Development mode with all services running"
+echo "  --dev-was       Development mode with only was (tomcat) running"
+echo "  --with-hub      Production mode - have to run under the hub web server"
+echo "  --dev-with-hub  Development mode - have to run under the hub web server"
 echo
 echo "Options:"
 echo "  --jmx           Add JMX support"
@@ -90,6 +91,10 @@ case $i in
         ;;
     --fulldev)
         CONF_ARG="-f docker-compose-dev-full.yml"
+        shift
+        ;;
+    --dev-with-hub)
+        CONF_ARG="-f docker-compose-dev-with-hub.yml"
         shift
         ;;
     --jmx)
