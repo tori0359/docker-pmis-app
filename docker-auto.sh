@@ -2,26 +2,39 @@
 
 set -e
 
-DOCKER_COMPOSE_VERSION="1.11.2"
-CONF_ARG="-f docker-compose-prod-full.yml"
 SCRIPT_BASE_PATH=$( cd "$( dirname "${BASH_SOURCE[0]}" )" && pwd )
-PATH=$PATH:/usr/local/bin/
-
 cd "$SCRIPT_BASE_PATH"
 
-PROJECT_NAME="$PROJECT_NAME"
-if [ -z "$PROJECT_NAME" ]; then
-    PROJECT_NAME="$(cat .env | awk 'BEGIN { FS="="; } /^PROJECT_NAME/ {sub(/\r/,"",$2); print $2;}')"
-fi
-REGISTRY_URL="$REGISTRY_URL"
-if [ -z "$REGISTRY_URL" ]; then
-    REGISTRY_URL="$(cat .env | awk 'BEGIN { FS="="; } /^REGISTRY_URL/ {sub(/\r/,"",$2); print $2;}')"
-fi
+###############################################
+# Extract Environment Variables from .env file
+# Ex. REGISTRY_URL="$(getenv REGISTRY_URL)"
+###############################################
+getenv(){
+    local _env="$(printenv $1)"
+    echo "${_env:-$(cat .env | awk 'BEGIN { FS="="; } /^'$1'/ {sub(/\r/,"",$2); print $2;}')}"
+}
 
-if ! command -v docker-compose >/dev/null 2>&1; then
+DOCKER_COMPOSE_VERSION="1.14.0"
+CONF_ARG="-f docker-compose-prod-full.yml"
+PATH=$PATH:/usr/local/bin/
+PROJECT_NAME="$(getenv PROJECT_NAME)"
+REGISTRY_URL="$(getenv REGISTRY_URL)"
+
+########################################
+# Install docker-compose
+# DOCKER_COMPOSE_VERSION need to be set
+########################################
+install_docker_compose() {
     sudo curl -L "https://github.com/docker/compose/releases/download/$DOCKER_COMPOSE_VERSION/docker-compose-$(uname -s)-$(uname -m)" \
     -o /usr/local/bin/docker-compose
     sudo chmod +x /usr/local/bin/docker-compose
+    return 0
+}
+
+if ! command -v docker-compose >/dev/null 2>&1; then
+    install_docker_compose
+elif [[ "$(docker-compose version --short)" != "$DOCKER_COMPOSE_VERSION" ]]; then
+    install_docker_compose
 fi
 
 usage() {
@@ -30,9 +43,10 @@ echo
 echo "Mode:"
 echo "  --prod          Production mode with all services running"
 echo "  --prod-was      Production mode with only was (tomcat) running"
-echo "  --dev           Development mode with only was running"
-echo "  --fulldev       Development mode with all services running"
-echo "  --with-hub      Production mode only was and httpd - have to run under the hub web server"
+echo "  --dev           Development mode with all services running"
+echo "  --dev-was       Development mode with only was (tomcat) running"
+echo "  --with-hub      Production mode - have to run under the hub web server"
+echo "  --dev-with-hub  Development mode - have to run under the hub web server"
 echo
 echo "Options:"
 echo "  --jmx           Add JMX support"
@@ -77,6 +91,10 @@ case $i in
         ;;
     --fulldev)
         CONF_ARG="-f docker-compose-dev-full.yml"
+        shift
+        ;;
+    --dev-with-hub)
+        CONF_ARG="-f docker-compose-dev-with-hub.yml"
         shift
         ;;
     --jmx)
