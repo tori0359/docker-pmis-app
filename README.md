@@ -201,5 +201,8 @@ The following settings are available:
 | JMX_PORT             | The is the port required to connect to the JMX service.                                                                                                                                |
 | JMX_HOST             | This is the host that will be used to connect to the JMX service (should be same as `MACHINE_HOST`)                                                                                    |
 | HUB_INSTANCE         | This is the alias that will be used by the hub service to connect to this web server instance. This property is valid only if the `docker-compose-with-hub.yml` configuration is used. |
+| JAVA_OPTS            | We can use JAVA_OPTS to change or add system properties to our system  (JAVA_OPTS=-Dsystem.devmode=true -Dspring.profile.active=p6spy)                                                 |
 
-(\*) *These variables are required*
+> (\*) *These variables are required*
+
+*table generated with [tablesgenerator](http://www.tablesgenerator.com/markdown_tables)*
