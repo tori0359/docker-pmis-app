@@ -61,7 +61,7 @@ depending on the requirements.
 
 Take this source from git repository with the following commands:
 
-    $ git clone https://github.com/sangahco/docker-log-shippers.git
+    $ git clone https://github.com/sangahco/docker-pmis-app.git
     $ cd docker-log-shippers
     $ git submodule init
     $ git submodule update
