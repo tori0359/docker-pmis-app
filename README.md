@@ -1,6 +1,8 @@
-# How to Use Docker Deployment
+# PMIS Web Application "Containerized"
 
-## Requirements
+WAS, HTTP Server, File Upload Server and SSL/TLS automatic client packed with love.
+
+## Prerequisites
 
 First make sure Docker and Docker Compose are installed on the machine with:
 
