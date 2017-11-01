@@ -113,6 +113,7 @@ Remember to use the `dev` mode when running `docker-auto.sh` script!
 
 The application will be available at port `8080` or at the port defined with `HTTP_PORT`.
 
+---
 
 ## Run using **docker-auto** script
 
@@ -137,6 +138,7 @@ The application will be available at port `80` or `443`.
 
 Change the `mode` whether you want production or testing environment (`--prod`, `--prod-was`, `--dev`, `--full-dev` etc.).
 
+---
 
 ## Run with **docker-compose**
 
@@ -188,6 +190,7 @@ The best way to use this certgen service is to set a schedule task that run ever
 
     00 02 * * 1 <PATH TO THE PROJECT FOLDER>/docker-auto.sh --certgen up
 
+---
 
 ## Settings Up the Environment
 
