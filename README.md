@@ -12,6 +12,7 @@ If they are missing, follow the instructions on the official website (they are n
 - [Docker CE Install How-to](https://docs.docker.com/engine/installation/)
 - [Docker Compose Install How-to](https://docs.docker.com/compose/install/)
 
+---
 
 ## Brief Explanation
 
@@ -53,6 +54,17 @@ depending on the requirements.
 > This variable is used as the Docker image name and have to be different from any other projects.
 
 > In case you build manually, check also the variable `PROJECT_ARCHIVE` and make sure the `war` file generated during the building process (`Ant Build`) has the same name.
+
+---
+
+## Download Me!
+
+Take this source from git repository with the following commands:
+
+    $ git clone https://github.com/sangahco/docker-log-shippers.git
+    $ cd docker-log-shippers
+    $ git submodule init
+    $ git submodule update
 
 ---
 
