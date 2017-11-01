@@ -1,3 +1,6 @@
+[![HitCount](http://hits.dwyl.io/sangahco/sangahco/docker-pmis-app.svg)](http://hits.dwyl.io/sangahco/sangahco/docker-pmis-app)
+[![Jenkins](https://img.shields.io/jenkins/s/https/dev.builder.sangah.com/job/pmis-base.svg?style=flat-square)]()
+
 # PMIS Web Application "Containerized"
 
 WAS, HTTP Server, File Upload Server and SSL/TLS automatic client packed with love.
