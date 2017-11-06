@@ -1,1 +1,1 @@
-FROM dev.sangah.com:5043/pmis-base:0.1
+FROM dev.sangah.com:5043/pmis-base:stable
