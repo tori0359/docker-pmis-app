@@ -86,11 +86,11 @@ case $i in
         shift
         ;;
     --dev)
-        CONF_ARG="-f docker-compose-dev.yml"
+        CONF_ARG="-f docker-compose-dev-full.yml"
         shift
         ;;
-    --fulldev)
-        CONF_ARG="-f docker-compose-dev-full.yml"
+    --dev-was)
+        CONF_ARG="-f docker-compose-dev-was.yml"
         shift
         ;;
     --dev-with-hub)
