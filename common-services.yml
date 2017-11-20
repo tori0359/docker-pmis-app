@@ -21,7 +21,7 @@ services:
     - DB_USERNAME
 
   httpd:
-    image: ${REGISTRY_URL}/apache-pmis
+    image: sangah/apache-pmis
     extends:
       service: logging
     volumes:
@@ -33,7 +33,7 @@ services:
     - APACHE_SSL_CHAIN
 
   upload:
-    image: ${REGISTRY_URL}/pmis-fileupload
+    image: sangah/pmis-fileupload
     extends:
       service: logging
     volumes:
