@@ -1,1 +1,1 @@
-FROM dev.sangah.com:5043/pmis-base:jre8
+FROM sangah/pmis-base:jre8
