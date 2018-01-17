@@ -40,7 +40,6 @@ services:
     volumes:
     - tmp:/tmp
     - ngx:/etc/nginx/www
-    - ${LOG_PATH}/nginx:/var/log/nginx
 
   php:
     image: php:5.6-fpm
