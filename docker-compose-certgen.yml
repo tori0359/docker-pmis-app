@@ -2,7 +2,7 @@ version: "2"
 
 services:
   certbot:
-    image: ${REGISTRY_URL}/nginx-certbot
+    image: sangah/nginx-certbot
     volumes:
     - ${CERTBOT_CERTS_PATH}:/etc/letsencrypt
     - app:/usr/share/nginx/html
