@@ -34,6 +34,14 @@ services:
       service: php
     restart: "unless-stopped"
 
+  rabbitmq:
+    extends: 
+      file: common-services.yml
+      service: rabbitmq
+    ports:
+    - "${RABBITMQ_HTTP_PORT}:15672"
+    restart: "unless-stopped"
+
 volumes:
   tmp:
   thumb:

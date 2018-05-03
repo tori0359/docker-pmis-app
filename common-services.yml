@@ -13,13 +13,15 @@ services:
     - ${EDMS_PATH}:/edms
     environment:
     - LOGSPOUT=ignore
-    - SYSTEM_TIMEZONE=Asia/Seoul
+    - SYSTEM_TIMEZONE
     - JAVA_MAX_SIZE
     - JAVA_OPTS
     - MACHINE_HOST
     - DB_URL
     - DB_PASSWORD
     - DB_USERNAME
+    - RABBITMQ_DEFAULT_USER
+    - RABBITMQ_DEFAULT_PASS
 
   httpd:
     image: sangah/apache-pmis
@@ -48,6 +50,15 @@ services:
       service: logging
     volumes:
     - ngx:/etc/nginx/www
+
+  rabbitmq:
+    image: rabbitmq:3-management
+    extends:
+      service: logging
+    environment: 
+    - RABBITMQ_DEFAULT_USER
+    - RABBITMQ_DEFAULT_PASS
+    restart: "unless-stopped"
 
   logging:
     logging: 
