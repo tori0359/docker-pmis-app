@@ -15,7 +15,7 @@ getenv(){
 }
 
 DOCKER_COMPOSE_VERSION="1.14.0"
-CONF_ARG="-f docker-compose-prod-full.yml"
+CONF_ARG="-f docker-compose-prod-full.yml -f docker-compose-rabbitmq.yml"
 PATH=$PATH:/usr/local/bin/
 PROJECT_NAME="$(getenv PROJECT_NAME)"
 REGISTRY_URL="$(getenv REGISTRY_URL)"
@@ -74,7 +74,7 @@ for i in "$@"
 do
 case $i in
     --prod)
-        CONF_ARG="-f docker-compose-prod-full.yml"
+        CONF_ARG="-f docker-compose-prod-full.yml -f docker-compose-rabbitmq.yml"
         shift
         ;;
     --prod-was)
@@ -82,7 +82,7 @@ case $i in
         shift
         ;;
     --with-hub)
-        CONF_ARG="-f docker-compose-prod-with-hub.yml"
+        CONF_ARG="-f docker-compose-prod-with-hub.yml -f docker-compose-rabbitmq.yml"
         shift
         ;;
     --dev)

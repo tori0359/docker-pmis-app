@@ -1,0 +1,26 @@
+version: "2"
+
+services: 
+
+  rabbitmq:
+    image: rabbitmq:3-management
+    environment: 
+    - RABBITMQ_DEFAULT_USER
+    - RABBITMQ_DEFAULT_PASS
+    - RABBITMQ_VM_MEMORY_HIGH_WATERMARK=0.8
+    extends: 
+      file: common-services.yml
+      service: logging
+    ports:
+    - "${RABBITMQ_HTTP_PORT}:15672"
+    volumes:
+    - rabbitmq:/var/lib/rabbitmq/mnesia
+    restart: "unless-stopped"
+
+  was:
+    environment: 
+    - RABBITMQ_DEFAULT_USER
+    - RABBITMQ_DEFAULT_PASS
+
+volumes:
+  rabbitmq:

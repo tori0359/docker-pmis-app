@@ -20,8 +20,6 @@ services:
     - DB_URL
     - DB_PASSWORD
     - DB_USERNAME
-    - RABBITMQ_DEFAULT_USER
-    - RABBITMQ_DEFAULT_PASS
 
   httpd:
     image: sangah/apache-pmis
@@ -50,16 +48,6 @@ services:
       service: logging
     volumes:
     - ngx:/etc/nginx/www
-
-  rabbitmq:
-    image: rabbitmq:3-management
-    extends:
-      service: logging
-    environment: 
-    - RABBITMQ_DEFAULT_USER
-    - RABBITMQ_DEFAULT_PASS
-    - RABBITMQ_VM_MEMORY_HIGH_WATERMARK=0.8
-    restart: "unless-stopped"
 
   logging:
     logging: 
