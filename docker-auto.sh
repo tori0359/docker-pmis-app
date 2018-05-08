@@ -51,6 +51,7 @@ echo
 echo "Options:"
 echo "  --jmx           Add JMX support"
 echo "  --certgen       Run the certbot instance for generating SSL certificate"
+echo "  --rabbitmq      Add RabbitMQ Server"
 echo "  --help          Show this help message"
 echo
 echo "Commands:"
@@ -103,6 +104,10 @@ case $i in
         ;;
     --certgen)
         CONF_ARG="$CONF_ARG -f docker-compose-certgen.yml"
+        shift
+        ;;
+    --rabbitmq)
+        CONF_ARG="$CONF_ARG -f docker-compose-rabbitmq.yml"
         shift
         ;;
     --help|-h)
