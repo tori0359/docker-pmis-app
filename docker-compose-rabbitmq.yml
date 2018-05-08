@@ -19,8 +19,8 @@ services:
 
   was:
     environment: 
-    - RABBITMQ_DEFAULT_USER
-    - RABBITMQ_DEFAULT_PASS
+    - "com.sangah.username=${RABBITMQ_DEFAULT_USER}"
+    - "com.sangah.password=${RABBITMQ_DEFAULT_PASS}"
 
 volumes:
   rabbitmq:

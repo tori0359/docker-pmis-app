@@ -17,9 +17,9 @@ services:
     - JAVA_MAX_SIZE
     - JAVA_OPTS
     - MACHINE_HOST
-    - DB_URL
-    - DB_PASSWORD
-    - DB_USERNAME
+    - "db.Url=${DB_URL}"
+    - "db.Password=${DB_PASSWORD}"
+    - "db.Username=${DB_USERNAME}"
 
   httpd:
     image: sangah/apache-pmis
