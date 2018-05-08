@@ -29,11 +29,14 @@ services:
       service: rabbitmq
     ports:
     - "${RABBITMQ_HTTP_PORT}:15672"
+    volumes:
+    - rabbitmq:/var/lib/rabbitmq/mnesia
     restart: "unless-stopped"
 
 volumes:
   thumb:
   app:
+  rabbitmq:
   tmp:
     external: true
 
