@@ -50,7 +50,7 @@ echo "  --dev-with-hub  Development mode - have to run under the hub web server"
 echo
 echo "Options:"
 echo "  --jmx           Add JMX support"
-echo "  --jpda          Add JPDA remote logging"
+echo "  --jpda          Add JPDA remote debugging"
 echo "  --certgen       Run the certbot instance for generating SSL certificate"
 echo "  --help          Show this help message"
 echo
