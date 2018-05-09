@@ -50,6 +50,7 @@ echo "  --dev-with-hub  Development mode - have to run under the hub web server"
 echo
 echo "Options:"
 echo "  --jmx           Add JMX support"
+echo "  --jpda          Add JPDA remote logging"
 echo "  --certgen       Run the certbot instance for generating SSL certificate"
 echo "  --help          Show this help message"
 echo
@@ -103,6 +104,10 @@ case $i in
         ;;
     --certgen)
         CONF_ARG="$CONF_ARG -f docker-compose-certgen.yml"
+        shift
+        ;;
+    --jpda)
+        CONF_ARG="$CONF_ARG -f docker-compose-jpda.yml"
         shift
         ;;
     --help|-h)

@@ -1,0 +1,13 @@
+version: "2"
+
+services:
+  was:
+    ports:
+    - "${JPDA_PORT}:8000"
+    environment: 
+    - JAVA_MAX_SIZE
+    - JPDA_ADDRESS=8000
+    - JPDA_TRANSPORT=dt_socket
+    expose: 
+    - "8000"
+    command: ["catalina.sh", "jpda", "run"]
