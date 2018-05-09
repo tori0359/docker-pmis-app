@@ -50,6 +50,7 @@ echo "  --dev-with-hub  Development mode - have to run under the hub web server"
 echo
 echo "Options:"
 echo "  --jmx           Add JMX support"
+echo "  --jpda          Add JPDA remote logging"
 echo "  --certgen       Run the certbot instance for generating SSL certificate"
 echo "  --rabbitmq      Add RabbitMQ Server"
 echo "  --help          Show this help message"
@@ -108,6 +109,10 @@ case $i in
         ;;
     --rabbitmq)
         CONF_ARG="$CONF_ARG -f docker-compose-rabbitmq.yml"
+        shift
+        ;;
+    --jpda)
+        CONF_ARG="$CONF_ARG -f docker-compose-jpda.yml"
         shift
         ;;
     --help|-h)
