@@ -11,6 +11,7 @@ services:
     extends: 
       file: common-services.yml
       service: logging
+    hostname: rabbitmq # important for persistent queues
     ports:
     - "${RABBITMQ_HTTP_PORT}:15672"
     volumes:
