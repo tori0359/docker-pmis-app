@@ -3,7 +3,7 @@ version: "2"
 services: 
 
   rabbitmq:
-    image: rabbitmq:3-management
+    image: sangah/rabbitmq
     environment: 
     - RABBITMQ_DEFAULT_USER
     - RABBITMQ_DEFAULT_PASS
