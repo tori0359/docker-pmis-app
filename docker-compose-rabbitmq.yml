@@ -20,8 +20,8 @@ services:
 
   was:
     environment: 
-    - "com.sangah.username=${RABBITMQ_DEFAULT_USER}"
-    - "com.sangah.password=${RABBITMQ_DEFAULT_PASS}"
+    - "rabbitmq.username=${RABBITMQ_DEFAULT_USER}"
+    - "rabbitmq.password=${RABBITMQ_DEFAULT_PASS}"
     depends_on: 
     - rabbitmq
 
