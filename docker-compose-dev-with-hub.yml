@@ -18,6 +18,8 @@ services:
       service: httpd
     environment:
     - APACHE_SSL=0
+    depends_on: 
+    - was
     networks: 
       default:
       hub_net:
