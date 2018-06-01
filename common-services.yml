@@ -31,7 +31,6 @@ services:
     - APACHE_SSL
     - APACHE_SSL_KEY
     - APACHE_SSL_CERT
-    - APACHE_SSL_CHAIN
     - SECURED_RESOURCE_ALLOWED_IP
 
   upload:
