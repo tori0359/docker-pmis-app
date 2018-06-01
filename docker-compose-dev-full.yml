@@ -20,6 +20,8 @@ services:
     - "${HTTP_PORT}:80"
     environment:
     - APACHE_SSL=0
+    depends_on: 
+    - was
 
   upload:
     extends: 
