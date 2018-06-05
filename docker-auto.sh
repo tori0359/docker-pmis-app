@@ -15,7 +15,7 @@ getenv(){
 }
 
 DOCKER_COMPOSE_VERSION="1.14.0"
-CONF_ARG="-f docker-compose-prod-full.yml"
+CONF_ARG="-f docker-compose-prod-full.yml -f docker-compose-rabbitmq.yml"
 PATH=$PATH:/usr/local/bin/
 PROJECT_NAME="$(getenv PROJECT_NAME)"
 REGISTRY_URL="$(getenv REGISTRY_URL)"
@@ -52,6 +52,7 @@ echo "Options:"
 echo "  --jmx           Add JMX support"
 echo "  --jpda          Add JPDA remote debugging"
 echo "  --certgen       Run the certbot instance for generating SSL certificate"
+echo "  --rabbitmq      Add RabbitMQ Server"
 echo "  --help          Show this help message"
 echo
 echo "Commands:"
@@ -75,7 +76,7 @@ for i in "$@"
 do
 case $i in
     --prod)
-        CONF_ARG="-f docker-compose-prod-full.yml"
+        CONF_ARG="-f docker-compose-prod-full.yml -f docker-compose-rabbitmq.yml"
         shift
         ;;
     --prod-was)
@@ -83,7 +84,7 @@ case $i in
         shift
         ;;
     --with-hub)
-        CONF_ARG="-f docker-compose-prod-with-hub.yml"
+        CONF_ARG="-f docker-compose-prod-with-hub.yml -f docker-compose-rabbitmq.yml"
         shift
         ;;
     --dev)
@@ -104,6 +105,10 @@ case $i in
         ;;
     --certgen)
         CONF_ARG="$CONF_ARG -f docker-compose-certgen.yml"
+        shift
+        ;;
+    --rabbitmq)
+        CONF_ARG="$CONF_ARG -f docker-compose-rabbitmq.yml"
         shift
         ;;
     --jpda)

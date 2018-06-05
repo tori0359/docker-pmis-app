@@ -13,7 +13,7 @@ services:
     - ${EDMS_PATH}:/edms
     environment:
     - LOGSPOUT=ignore
-    - SYSTEM_TIMEZONE=Asia/Seoul
+    - SYSTEM_TIMEZONE
     - JAVA_MAX_SIZE
     - JAVA_OPTS
     - MACHINE_HOST

@@ -7,7 +7,7 @@ services:
       file: common-services.yml
       service: webapp
     environment: 
-    - SYSTEM_UPLOAD_HANDLER=nginx
+    - "system.upload.handler=nginx"
     restart: "unless-stopped"
 
   httpd:
