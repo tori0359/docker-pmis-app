@@ -98,7 +98,6 @@ Before starting the application we need to set the environment and you can choos
         export APACHE_SSL=1
         export APACHE_SSL_CERT=cert.pem
         export APACHE_SSL_KEY=key.pem
-        export APACHE_SSL_CHAIN=chain.pem
         export APACHE_SSL_CERT_PATH=/etc/ssl/app
 
   This configuration will be global and used amongst all applications on this server.
@@ -213,7 +212,6 @@ The following settings are available:
 | APACHE_SSL           | It enable the SSL access                                                                                                                                                               |
 | APACHE_SSL_CERT      | The path to the SSL certificate                                                                                                                                                        |
 | APACHE_SSL_KEY       | The path to the SSL key                                                                                                                                                                |
-| APACHE_SSL_CHAIN     | The path to the SSL chain certificate                                                                                                                                                  |
 | APACHE_SSL_CERT_PATH | This is where the SSL certificate and key are located.                                                                                                                                 |
 | CERTBOT_CERTS_PATH   | This is where the SSL certificate have to be generated                                                                                                                                 |
 | CERTBOT_HOST         | This is the host (DNS) used for generating the SSL certificates                                                                                                                        |

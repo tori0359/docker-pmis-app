@@ -10,7 +10,7 @@ services:
       file: common-services.yml
       service: webapp
     environment: 
-    - SYSTEM_UPLOAD_HANDLER=nginx
+    - "system.upload.handler=nginx"
 
   httpd:
     extends: 
@@ -20,6 +20,8 @@ services:
     - "${HTTP_PORT}:80"
     environment:
     - APACHE_SSL=0
+    depends_on: 
+    - was
 
   upload:
     extends: 

@@ -6,8 +6,8 @@ services:
     extends: 
       file: common-services.yml
       service: webapp
-    environment: 
-    - SYSTEM_UPLOAD_HANDLER=nginx
+    environment:
+    - "system.upload.handler=nginx"
     restart: "unless-stopped"
 
   httpd:
@@ -20,6 +20,8 @@ services:
     ports:
     - "${HTTP_PORT}:80"
     - "443:443"
+    depends_on: 
+    - was
     restart: "unless-stopped"
 
   upload:

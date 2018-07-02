@@ -12,8 +12,7 @@ services:
     - ${LOG_PATH}/pmis:/var/log/pmis
     - ${EDMS_PATH}:/edms
     environment:
-    - LOGSPOUT=ignore
-    - SYSTEM_TIMEZONE=Asia/Seoul
+    - SYSTEM_TIMEZONE
     - JAVA_MAX_SIZE
     - JAVA_OPTS
     - MACHINE_HOST
@@ -31,7 +30,6 @@ services:
     - APACHE_SSL
     - APACHE_SSL_KEY
     - APACHE_SSL_CERT
-    - APACHE_SSL_CHAIN
     - SECURED_RESOURCE_ALLOWED_IP
 
   upload:

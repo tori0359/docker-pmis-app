@@ -1,0 +1,29 @@
+version: "2"
+
+services: 
+
+  rabbitmq:
+    image: sangah/rabbitmq
+    environment: 
+    - RABBITMQ_DEFAULT_USER
+    - RABBITMQ_DEFAULT_PASS
+    - RABBITMQ_VM_MEMORY_HIGH_WATERMARK=0.8
+    extends: 
+      file: common-services.yml
+      service: logging
+    hostname: rabbitmq # important for persistent queues
+    ports:
+    - "15672"
+    volumes:
+    - rabbitmq:/var/lib/rabbitmq/mnesia
+    restart: "unless-stopped"
+
+  was:
+    environment: 
+    - RABBITMQ_DEFAULT_USER
+    - RABBITMQ_DEFAULT_PASS
+    depends_on: 
+    - rabbitmq
+
+volumes:
+  rabbitmq:
