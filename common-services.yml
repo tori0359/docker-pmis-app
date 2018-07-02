@@ -12,7 +12,6 @@ services:
     - ${LOG_PATH}/pmis:/var/log/pmis
     - ${EDMS_PATH}:/edms
     environment:
-    - LOGSPOUT=ignore
     - SYSTEM_TIMEZONE
     - JAVA_MAX_SIZE
     - JAVA_OPTS
