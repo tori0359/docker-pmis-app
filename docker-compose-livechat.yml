@@ -1,0 +1,10 @@
+version: "2"
+
+services:
+
+  livechat:
+    image: sangah/livechat
+    environment: 
+    - CLIENT_AUTH_ENABLED=true
+    - CLIENT_AUTH_HOST=httpd
+    - CLIENT_AUTH_PATH=/
