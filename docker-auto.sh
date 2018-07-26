@@ -15,7 +15,7 @@ getenv(){
 }
 
 DOCKER_COMPOSE_VERSION="1.14.0"
-CONF_ARG="-f docker-compose-prod-full.yml -f docker-compose-rabbitmq.yml"
+CONF_ARG="-f docker-compose-prod-full.yml"
 PATH=$PATH:/usr/local/bin/
 PROJECT_NAME="$(getenv PROJECT_NAME)"
 REGISTRY_URL="$(getenv REGISTRY_URL)"
@@ -120,6 +120,7 @@ case $i in
         exit 1
         ;;
     *)
+        CONF_ARG="$CONF_ARG -f docker-compose-rabbitmq.yml -f docker-compose-livechat.yml"
         ;;
 esac
 done

@@ -6,5 +6,5 @@ services:
     image: sangah/livechat
     environment: 
     - CLIENT_AUTH_ENABLED=true
-    - CLIENT_AUTH_HOST=httpd
-    - CLIENT_AUTH_PATH=/
+    - CLIENT_AUTH_ENDPOINT=http://httpd/
+    - SERVER_WEBROOT=/livechat
