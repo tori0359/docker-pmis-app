@@ -1,0 +1,8 @@
+version: "2"
+
+services:
+  was:
+    image: sangah/pmis-base:jre8
+    volumes: 
+    - ./was:/usr/local/src
+    - ./was/webapp:/usr/local/webapp

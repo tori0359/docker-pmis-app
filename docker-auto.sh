@@ -53,6 +53,7 @@ echo "  --jmx           Add JMX support"
 echo "  --jpda          Add JPDA remote debugging"
 echo "  --certgen       Run the certbot instance for generating SSL certificate"
 echo "  --rabbitmq      Add RabbitMQ Server"
+echo "  --noimage       Use a war file located in 'was' folder, use the ant task 'docker-build' to create the war file"
 echo "  --help          Show this help message"
 echo
 echo "Commands:"
