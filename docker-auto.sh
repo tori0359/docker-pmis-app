@@ -116,6 +116,10 @@ case $i in
         CONF_ARG="$CONF_ARG -f docker-compose-jpda.yml"
         shift
         ;;
+    --noimage)
+        CONF_ARG="$CONF_ARG -f docker-compose-prod-noimage.yml"
+        shift
+        ;;
     --help|-h)
         usage
         exit 1

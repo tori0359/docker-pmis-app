@@ -40,17 +40,28 @@ depending on the requirements.
     > It has **3 services**,
     > `WAS`, `File Upload Server` and `Web Server`.
 
-- **docker-compose-dev.yml**
+- **docker-compose-dev-was.yml**
     > Testing environment where the image have to be built.
     > This configuration contains only `WAS` instance.
+
+- **docker-compose-dev-with-hub.yml**
+    > Testing environment to use together with the [*Web Hub*](https://github.com/sangahco/docker-webapp-hub) service.
 
 - **docker-compose-jmx.yml**
     > This configuration enable the Java Management Extensions (*JMX*)
     > for remote monitoring of Tomcat instances.
 
-- **docker-compose-certgen**
+- **docker-compose-certgen.yml**
     > This configuration run the certbot tool to create or update the ssl certificate
     > It require the web server running, to use only for production.
+
+- **docker-compose-rabbitmq.yml**
+    > It enable the service rabbitmq for managing background tasks, and can keep tracks of them even after a restart.
+    > This service is enabled by default if using the `--prod mode` or `--with-hub` mode.
+
+- **docker-compose-prod-noimage.yml**
+    > You can use this option if you want to pack the application into a `war` file and deploy it directly without building the docker image. Create a folder named `was` in the same folder where this README is, and put the war file into it.
+    > The war file will disappear from the folder and moved into the subfolder `webapp` as soon as you start the service.
 
 
 **Important**
