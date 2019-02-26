@@ -19,7 +19,7 @@ services:
     ports:
     - "${HTTP_PORT}:80"
     environment:
-    - APACHE_SSL=0
+    - SSL_ENABLED=0
     depends_on: 
     - was
 

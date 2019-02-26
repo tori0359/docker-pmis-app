@@ -16,21 +16,19 @@ services:
     - JAVA_MAX_SIZE
     - JAVA_OPTS
     - MACHINE_HOST
+    - PROJECT_NAME
     - DB_URL
     - DB_PASSWORD
     - DB_USERNAME
 
   httpd:
-    image: sangah/apache-pmis
+    image: sangah/nginx-pmis
     extends:
       service: logging
     volumes:
     - app:/var/www
     environment:
-    - APACHE_SSL
-    - APACHE_SSL_KEY
-    - APACHE_SSL_CERT
-    - SECURED_RESOURCE_ALLOWED_IP
+    - SSL_ENABLED
 
   upload:
     image: sangah/pmis-fileupload

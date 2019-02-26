@@ -15,7 +15,7 @@ getenv(){
 }
 
 DOCKER_COMPOSE_VERSION="1.14.0"
-CONF_ARG="-f docker-compose-prod-full.yml -f docker-compose-rabbitmq.yml"
+CONF_ARG="-f docker-compose-prod-full.yml"
 PATH=$PATH:/usr/local/bin/
 PROJECT_NAME="$(getenv PROJECT_NAME)"
 REGISTRY_URL="$(getenv REGISTRY_URL)"
@@ -53,6 +53,7 @@ echo "  --jmx           Add JMX support"
 echo "  --jpda          Add JPDA remote debugging"
 echo "  --certgen       Run the certbot instance for generating SSL certificate"
 echo "  --rabbitmq      Add RabbitMQ Server"
+echo "  --noimage       Use a war file located in 'was' folder, use the ant task 'docker-build' to create the war file"
 echo "  --help          Show this help message"
 echo
 echo "Commands:"
@@ -115,11 +116,16 @@ case $i in
         CONF_ARG="$CONF_ARG -f docker-compose-jpda.yml"
         shift
         ;;
+    --noimage)
+        CONF_ARG="$CONF_ARG -f docker-compose-prod-noimage.yml"
+        shift
+        ;;
     --help|-h)
         usage
         exit 1
         ;;
     *)
+        CONF_ARG="$CONF_ARG -f docker-compose-rabbitmq.yml -f docker-compose-livechat.yml"
         ;;
 esac
 done

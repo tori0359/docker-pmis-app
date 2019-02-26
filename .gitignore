@@ -4,3 +4,5 @@ log
 certs
 ssl
 *.war
+*.lock
+was/webapp

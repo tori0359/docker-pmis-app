@@ -1,0 +1,11 @@
+version: "2"
+
+services:
+
+  livechat:
+    image: sangah/livechat
+    environment: 
+    - CLIENT_AUTH_ENABLED=true
+    - CLIENT_AUTH_ENDPOINT=http://httpd/
+    - CLIENT_PROFILE_ENDPOINT=http://httpd/System/User/findUser.action
+    - SERVER_WEBROOT=/livechat
