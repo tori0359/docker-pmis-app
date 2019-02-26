@@ -16,6 +16,7 @@ services:
     - JAVA_MAX_SIZE
     - JAVA_OPTS
     - MACHINE_HOST
+    - PROJECT_NAME
     - DB_URL
     - DB_PASSWORD
     - DB_USERNAME
