@@ -1,0 +1,9 @@
+version: "2"
+
+services:
+
+  httpd:
+    ports:
+    - "${HTTPS_PORT}:443"
+    environment: 
+    - SSL_ENABLED=1

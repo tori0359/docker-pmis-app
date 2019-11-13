@@ -27,8 +27,6 @@ services:
       service: logging
     volumes:
     - app:/var/www
-    environment:
-    - SSL_ENABLED
 
   upload:
     image: sangah/pmis-fileupload

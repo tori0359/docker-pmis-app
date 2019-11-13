@@ -55,6 +55,7 @@ echo "  --certgen       Run the certbot instance for generating SSL certificate"
 echo "  --rabbitmq      Add RabbitMQ Server"
 echo "  --noimage       Use a war file located in 'was' folder, use the ant task 'docker-build' to create the war file"
 echo "  --help          Show this help message"
+echo "  --ssl           Enable SSL connection, set HTTPS_PORT and certificate correctly"
 echo
 echo "Commands:"
 echo "  up              Start the services"
@@ -119,6 +120,10 @@ case $i in
         ;;
     --noimage)
         CONF_ARG="$CONF_ARG -f docker-compose-prod-noimage.yml"
+        shift
+        ;;
+    --ssl)
+        CONF_ARG="$CONF_ARG -f docker-compose-ssl.yml"
         shift
         ;;
     --help|-h)
