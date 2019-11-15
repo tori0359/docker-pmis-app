@@ -186,7 +186,8 @@ elif [ "$1" == "publish" ]; then
     exit 0
 
 elif [ "$1" == "arthas" ]; then
-    docker-compose $CONF_ARG exec was /bin/bash -c "wget https://alibaba.github.io/arthas/arthas-boot.jar && java -jar arthas-boot.jar"
+    shift
+    docker-compose $CONF_ARG exec was /bin/bash -c "wget https://alibaba.github.io/arthas/arthas-boot.jar && java -jar arthas-boot.jar $@"
     exit 0
 
 fi
