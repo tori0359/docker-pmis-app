@@ -68,6 +68,7 @@ echo "  remove-all      Remove all containers"
 echo "  stop-all        Stop all containers running"
 echo "  build           Build the image"
 echo "  publish         Publish the image to the registry"
+echo "  arthas          Start arthas diagnostic tool"
 }
 
 if [ $# -eq 0 ]; then
@@ -183,6 +184,11 @@ elif [ "$1" == "publish" ]; then
     docker login $REGISTRY_URL
     docker push $REGISTRY_URL/$PROJECT_NAME
     exit 0
+
+elif [ "$1" == "arthas" ]; then
+    docker-compose $CONF_ARG exec was /bin/bash -c "wget https://alibaba.github.io/arthas/arthas-boot.jar && java -jar arthas-boot.jar"
+    exit 0
+
 fi
 
 docker-compose $CONF_ARG "$@"
