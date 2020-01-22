@@ -6,3 +6,6 @@ ssl
 *.war
 *.lock
 was/webapp
+eai-ftp
+softcamp
+clipsoft
