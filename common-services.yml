@@ -11,6 +11,8 @@ services:
     - ${LOG_PATH}/tomcat:/usr/local/tomcat/logs
     - ${LOG_PATH}/pmis:/var/log/pmis
     - ${EDMS_PATH}:/edms
+    - ${SOFTCAMP_SCSL_PATH}:/softcamp
+    - ${EAI_FTP_PATH}:/tmp
     environment:
     - SYSTEM_TIMEZONE
     - JAVA_MAX_SIZE
