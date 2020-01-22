@@ -12,7 +12,8 @@ services:
     - ${LOG_PATH}/pmis:/var/log/pmis
     - ${EDMS_PATH}:/edms
     - ${SOFTCAMP_SCSL_PATH}:/softcamp
-    - ${EAI_FTP_PATH}:/tmp
+    - ${EAI_FTP_PATH}:/eai
+    - ${CLIPSOFT_REPORT_HOME}:/clipsoft
     environment:
     - SYSTEM_TIMEZONE
     - JAVA_MAX_SIZE
