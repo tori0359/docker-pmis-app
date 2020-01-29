@@ -11,9 +11,6 @@ services:
     - ${LOG_PATH}/tomcat:/usr/local/tomcat/logs
     - ${LOG_PATH}/pmis:/var/log/pmis
     - ${EDMS_PATH}:/edms
-    - ${SOFTCAMP_SCSL_PATH}:/softcamp
-    - ${EAI_FTP_PATH}:/eai
-    - ${CLIPSOFT_REPORT_HOME}:/clipsoft
     environment:
     - SYSTEM_TIMEZONE
     - JAVA_MAX_SIZE
@@ -23,6 +20,13 @@ services:
     - DB_URL
     - DB_PASSWORD
     - DB_USERNAME
+    - SAP_CO65070
+    - SAP_FI65060
+    - NLS_URL
+    - NLS_PORT
+    - NLS_ND_URL1
+    - NLS_ND_URL2
+    - SSO_DOMAIN
 
   httpd:
     image: sangah/nginx-pmis
