@@ -27,6 +27,9 @@ services:
     - NLS_ND_URL1
     - NLS_ND_URL2
     - SSO_DOMAIN
+    - SAP_HR65020
+    - SAP_HR65030
+    - SAP_CO65010
 
   httpd:
     image: sangah/nginx-pmis
